@@ -1,6 +1,6 @@
 # WEFix
 
-WEFix is an automated tool that can fix concurrency flakiness in web e2e testing. It inserts analysis code into the original e2e test files, and after collecting runtime mutation information, it can generate appropriate explicit waits after command statements to solve flakiness. The following graph shows the workflow of WEFix.
+WEFix is an automated tool that can fix concurrency flakiness in web e2e testing. It inserts analysis code into the original e2e test files, and after collecting runtime mutation information, it can generate appropriate explicit waits after command statements to solve flakiness. The following graph shows the workflow of WEFix. WEFix is composed of two parts: Mutation Recorder and Oracle Generator. 
 
 ![WEFix Structure](figs/WEFix_structure.png)
 
@@ -27,13 +27,14 @@ This file contains the information of seven web application repositories used in
 1. Clone the repository from GitHub. Make sure Node.js is installed.
 2. Run `npm install` or `yarn` to install necessary dependencies for the project.
 3. Run `npm install --save-dev wefix` or `yarn add --dev wefix` to add our tool WEFix as the development dependency.
-4. Run `npx wefix -i` or `yarn wefix -i`. WEFix will detect all e2e test files under current directory and instrument analysis code into them.
-5. Check the `package.json` file, and start build process using pre-defined npm command, such as `npm run build`.
-6. Start the application using pre-defined npm command, such as `npm run start:app`. The seven repos used in our paper will start a local server. Make sure you can visit its web page through localhost.
-7. Run the e2e testing using pre-defined npm command, such as `npm run test:e2e`. After the testing process finish, a local file named `mutation.log` will be generated, which contains mutation information of each commands recorded on the fly.
-8. (Optional) Run `npx wefix ui` or `yarn wefix ui`. WEfix will start a web page on localhost as UI panel, where all the mutations are presented in order. This UI panel could help users better understand the DOM behavior during test runtime and fix the flakiness.
-9. Run `npx wefix -f` or `yarn wefix -f`. WEfix will take `mutation.log` as input to insert generated fix code into the original test files. 
-10. Manually rerun fixed e2e tests ten times and check whether the flakiness disappeared.
+4. Mannually remove all wait statements in all e2e test files. So that all concurrency flakiness is exposed.
+5. Run `npx wefix -i` or `yarn wefix -i`. WEFix will detect all e2e test files under current directory and instrument analysis code into them.
+6. Check the `package.json` file, and start build process using pre-defined npm command, such as `npm run build`.
+7. Start the application using pre-defined npm command, such as `npm run start:app`. The seven repos used in our paper will start a local server. Make sure you can visit its web page through localhost.
+8. Run the e2e testing using pre-defined npm command, such as `npm run test:e2e`. For Cypress, you need to add `--config defaultCommandTimeout=0` parameter to disable its inherent auto-wait ability. After the testing process finish, a local file named `mutation.log` will be generated, which contains mutation information of each commands recorded on the fly.
+9. (Optional) Run `npx wefix ui` or `yarn wefix ui`. WEfix will start a web page on localhost as UI panel, where all the mutations are presented in order. This UI panel could help users better understand the DOM behavior during test runtime and fix the flakiness.
+10. Run `npx wefix -f` or `yarn wefix -f`. WEfix will take `mutation.log` as input to insert generated fix code into the original test files. 
+11. Manually rerun fixed e2e tests ten times and check whether the flakiness disappeared.
 
 
 ## Experiment Result
