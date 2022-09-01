@@ -1,6 +1,6 @@
 # WEFix
 
-WEFix is an automated tool that can automatically fix concurrency flakiness in web e2e testing. It inserts analysis code into the original e2e test files, and after collecting runtime mutation information, it can generate appropriate explicit waits after command statements to solve flakiness. The following graph shows the workflow of WEFix.
+WEFix is an automated tool that can fix concurrency flakiness in web e2e testing. It inserts analysis code into the original e2e test files, and after collecting runtime mutation information, it can generate appropriate explicit waits after command statements to solve flakiness. The following graph shows the workflow of WEFix.
 
 ![WEFix Structure](figs/WEFix_structure.png)
 
