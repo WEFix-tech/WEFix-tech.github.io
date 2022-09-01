@@ -1,8 +1,10 @@
 # WEFix
 
-WEFix is an automated tool that can automatically fix concurrency flakiness in web e2e testing. It inserts analysis code into the original e2e test files, and after collecting runtime mutation information, it can generate appropriate explicit waits after command statements to solve flakiness.
+WEFix is an automated tool that can automatically fix concurrency flakiness in web e2e testing. It inserts analysis code into the original e2e test files, and after collecting runtime mutation information, it can generate appropriate explicit waits after command statements to solve flakiness. The following graph shows the workflow of WEFix.
 
-We make our tool available on [NPM](), where Node.js users could easily download and integrate into their web project. And this tool includes a user-friendly UI panel to help developers fix web e2e flaky tests. The tool source code can be found on [GitHub]() under MIT licence.
+![WEFix Structure](figs/WEFix_structure.png)
+
+We make our tool available on [NPM](https://www.npmjs.com/package/@wefix-tech/wefix), where Node.js users can easily download and integrate it into their web projects. Moreover, this tool includes a user-friendly UI panel to help developers fix web e2e flaky tests. The tool source code can be found on [GitHub](https://github.com/WEFix-tech/WEFix) under the MIT licence.
 
 
 
@@ -14,7 +16,7 @@ In the paper, we collected 100,000 top-star JavaScript repositories from GitHub 
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS5ZE44hEsM4pQxB8k8Nm6Iz66EsIzes4ZtYjJfNuWKqW32Ku_c_Lk4JY7K0x9nWXK2dpeZqFWtPOCa/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false" loading allowfullscreen width="100%" height="300"></iframe>
 
 #### Exp_repos.xlsx
-This file contains the information of seven web application repositories used in our experiment. We picked them out from 250 repos because they have high star and easy to deploy. The "SHA" column shows the commit version we used.
+This file contains the information of seven web application repositories used in our experiment. We picked them out from 250 repos because they have high stars and are easy to deploy. The "SHA" column shows the commit version we used.
 
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS5ZE44hEsM4pQxB8k8Nm6Iz66EsIzes4ZtYjJfNuWKqW32Ku_c_Lk4JY7K0x9nWXK2dpeZqFWtPOCa/pubhtml?gid=759038802&amp;single=true&amp;widget=true&amp;headers=false"  loading allowfullscreen width="100%" height="300"></iframe>
 
@@ -32,3 +34,11 @@ This file contains the information of seven web application repositories used in
 8. (Optional) Run `npx wefix ui` or `yarn wefix ui`. WEfix will start a web page on localhost as UI panel, where all the mutations are presented in order. This UI panel could help users better understand the DOM behavior during test runtime and fix the flakiness.
 9. Run `npx wefix -f` or `yarn wefix -f`. WEfix will take `mutation.log` as input to insert generated fix code into the original test files. 
 10. Manually rerun fixed e2e tests ten times and check whether the flakiness disappeared.
+
+
+## Experiment Result
+
+#### Exp_result.xlsx
+In the paper, we apply WEFix on seven repos in [Exp_repos.xlsx](https://wefix-tech.github.io/#dataset). The fix result and overhead breakdowns are shown in this table.
+
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS5ZE44hEsM4pQxB8k8Nm6Iz66EsIzes4ZtYjJfNuWKqW32Ku_c_Lk4JY7K0x9nWXK2dpeZqFWtPOCa/pubhtml?gid=2093927333&amp;single=true&amp;widget=true&amp;headers=false"  loading allowfullscreen width="100%" height="400"></iframe>
